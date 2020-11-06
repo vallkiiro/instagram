@@ -53,7 +53,14 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="col-6 mx-auto">
+		<form action="add.php" method="GET">
+			<input type="" name="text" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="text">
+			<input type="" name="img" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="img">
+			<input type="" name="user" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="user">
+			<button class="btn">Добавить</button>
+		</form>
+	</div>
 	<div class="col-6 mx-auto" > <!--ГЛАВНЫЙ БЛОК-->
 		<div class="row"> 
 			<!--ЛЕВЫЙ БЛОК. ДИВ ДЛЯ ПОСТОВ-->
@@ -87,9 +94,10 @@
 					</div>
 					<!-- <div class="col-12" style="background-image: url(<?php echo $post1["img"];?>); background-size: cover; width: 100%; height: 100vh;"> --> <!--картинка поста-->
 					<!-- </div> -->
-					<div class="row">
+					<div class="col-2 bg-danger d-none hiding">fig</div>
+					<div class="row postvideo">
 						<?php
-							echo "<video src='".$post["img"]."' class='col-12' controls='controls'></video>";
+							echo "<video src='".$post["img"]."' class='col-12' controls='controls' ></video>";
 						?>
 					</div>
 					<div class="col-12 py-2">  <!--текстовые элементы поста-->
@@ -105,7 +113,18 @@
 						</div>
 						<div>
 							<p>10 минут назад</p>
-						</div>						
+						</div>
+						<form action="update.php" method="GET">
+							<input type="" name="id" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="id">
+							<input type="" name="text" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="text">
+							<input type="" name="img" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="img">
+							<button class="btn">Исправить</button>
+						</form>
+							<form action="delete.php" method="GET">
+								<input type="" name="id" class="border rounded text-center px-2 border-secondary" placeholder="id">
+								<button class="btn">Удалить</button>
+							</form>
+										
 					</div>
 				</div>
 				<!-- ПОСТ ЗАКРЫЛСЯ-->
@@ -202,7 +221,13 @@
 		</div>
 	</div>
 
-
+	<script type="text/javascript">
+		let postvideo = document.querySelector('.postvideo')
+		let hiding = document.querySelector('.hiding')
+		postvideo.onclick = function(){
+			hiding.style.display = "block"
+		}
+	</script>
 	
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
