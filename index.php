@@ -34,7 +34,10 @@
 				</div>
 				<div class="col-4">
 					<div class="row">
-						<div class="col-6"></div>
+						<div class="col-4"></div>
+						<div class="col-2 px-0 pl-2 add">
+							<img src="4.png" class="w-50">
+						</div>
 						<div class="col-2 px-0 pl-2">
 							<img src="1.png" class="w-50">
 						</div>
@@ -52,14 +55,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-6 mx-auto">
-		<form action="add.php" method="GET">
-			<input type="" name="text" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="text">
-			<input type="" name="img" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="img">
-			<input type="" name="user" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="user">
-			<button class="btn">Добавить</button>
-		</form>
 	</div>
 	<div class="col-6 mx-auto" > <!--ГЛАВНЫЙ БЛОК-->
 		<div class="row"> 
@@ -105,23 +100,26 @@
 							<p>Lol, KEK еще 13</p>
 						</div>
 						<div>
-							<p>
+							<p class="edit">
 								<?php
 									echo $post["text"];
 								?>
 							</p>
 						</div>
+						<div class="box" style="display: none">
+							<form action="update.php" method="GET">
+								<input type="hidden" name="id" value="<?php echo $post["id"]?>">
+								<input type="hidden" name="img" value="<?php echo $post["img"]?>">
+								<input type="" name="text" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="text" value="<?php echo $post["text"]?>">
+								<button class="btn">Сохранить</button>
+							</form>
+							<button class="btn cancel">Отмена</button>
+						</div>
 						<div>
 							<p>10 минут назад</p>
 						</div>
-						<form action="update.php" method="GET">
-							<input type="" name="id" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="id">
-							<input type="" name="text" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="text">
-							<input type="" name="img" class="border rounded text-center px-2 ml-2 border-secondary" placeholder="img">
-							<button class="btn">Исправить</button>
-						</form>
 							<form action="delete.php" method="GET">
-								<input type="" name="id" class="border rounded text-center px-2 border-secondary" placeholder="id">
+								<input type="hidden" name="id" value="<?php echo $post["id"];?>">
 								<button class="btn">Удалить</button>
 							</form>
 										
@@ -224,9 +222,26 @@
 	<script type="text/javascript">
 		let postvideo = document.querySelector('.postvideo')
 		let hiding = document.querySelector('.hiding')
-		postvideo.onclick = function(){
-			hiding.style.display = "block"
+		let edit = document.querySelectorAll('.edit')
+		let box = document.querySelectorAll('.box')
+		let cancel = document.querySelectorAll('.cancel')
+		let add = document.querySelector('.add')
+
+		add.onclick = function(){
+			document.location.href = "admin.php";
 		}
+		
+		for(let i=0; i<edit.length; i++){
+			edit[i].onclick = function(){
+				box[i].style.display = "block"
+				edit[i].style.display = "none"
+			}
+			cancel[i].onclick = function(){
+				box[i].style.display = "none"
+				edit[i].style.display = "block"
+			}
+		}
+		
 	</script>
 	
     <!-- Optional JavaScript -->
